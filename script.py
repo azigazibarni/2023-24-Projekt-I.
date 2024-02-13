@@ -7,11 +7,10 @@ destInput = int(input('Add meg a cél számrendszert (2, 8, 10, 16): '))
 def decimal(num, sys):
     if sys == 2:
         out = 0
-        num = [num[::-1]]
-        for i in len(num):
-            if num[i] == 1:
+        num = list(num[::-1])
+        for i in range(len(num)):
+            if int(num[i]) == 1:
                 out += 2**i
-        return out
 
     elif sys == 8:
         print(':3')
@@ -23,5 +22,7 @@ def decimal(num, sys):
         print(':3')
     else:
         return
+    
+    return out
 
-print(decimal(numInput, 2))
+print(decimal(numInput, sys=2))
