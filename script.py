@@ -21,7 +21,29 @@ def decimal(num, sys):
         out = num
 
     elif sys == 16:
-        print(':3')
+        hex = 0
+        num = list(num[::-1])
+        for i in range(len(num)):
+            if num[i].isdigit() == True:
+                out += int(num[i]) * (16 ** i)
+
+            elif num[i].isdigit() == False:
+
+                if num[i].lower() == 'a':
+                    hex = 10
+                elif num [i].lower() == 'b':
+                    hex = 11
+                elif num [i].lower() == 'c':
+                    hex = 12
+                elif num [i].lower() == 'd':
+                    hex = 13
+                elif num [i].lower() == 'e':
+                    hex = 14
+                elif num [i].lower() == 'f':
+                    hex = 15
+
+                out +=  hex * (16 ** i)
+
     else:
         return
     
