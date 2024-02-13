@@ -1,6 +1,6 @@
 sysInput = int(input('Add meg az átváltandó szám számrendszerét (2, 8, 10, 16): '))
 numInput = str(input('Add meg az átváltandó számot: '))
-destInput = int(input('Add meg a cél számrendszert (2, 8, 10, 16): '))
+# destInput = int(input('Add meg a cél számrendszert (2, 8, 10, 16): '))
 
 # sys: 2, 8, 10, 16
 
@@ -28,7 +28,6 @@ def decimal(num, sys):
                 out += int(num[i]) * (16 ** i)
 
             elif num[i].isdigit() == False:
-
                 if num[i].lower() == 'a':
                     hex = 10
                 elif num [i].lower() == 'b':
@@ -41,12 +40,9 @@ def decimal(num, sys):
                     hex = 14
                 elif num [i].lower() == 'f':
                     hex = 15
-
                 out +=  hex * (16 ** i)
-
     else:
         return
-    
     return out
 
 print(decimal(numInput, sysInput))
