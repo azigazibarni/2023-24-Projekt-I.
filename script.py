@@ -18,7 +18,7 @@ def decimal(num, sys):
             out += int(num[i]) * (8 ** i)
 
     elif sys == 10:
-        print(':3')
+        out = num
 
     elif sys == 16:
         print(':3')
