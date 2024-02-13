@@ -1,19 +1,17 @@
-from tkinter import *
-
-window = Tk()
-def HelloWorld(str):
-    print(str)
-
-HelloWorld('print')
-sysInput = int(input('Add meg az átváltandó számrendszert (2, 8, 10, 16): '))
+sysInput = int(input('Add meg az átváltandó szám számrendszerét (2, 8, 10, 16): '))
 numInput = str(input('Add meg az átváltandó számot: '))
-destInput = int(input('Add meg az átváltandó számrendszert (2, 8, 10, 16): '))
+destInput = int(input('Add meg a cél számrendszert (2, 8, 10, 16): '))
 
 # sys: 2, 8, 10, 16
 
-def tizesbe(num, sys):
+def decimal(num, sys):
     if sys == 2:
-        print(':3')
+        out = 0
+        num = [num[::-1]]
+        for i in len(num):
+            if num[i] == 1:
+                out += 2**i
+        return out
 
     elif sys == 8:
         print(':3')
@@ -26,4 +24,4 @@ def tizesbe(num, sys):
     else:
         return
 
-window.mainloop()
+print(decimal(numInput, 2))
