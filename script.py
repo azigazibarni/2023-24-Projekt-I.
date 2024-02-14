@@ -4,6 +4,7 @@ numInput = str(input('Add meg az átváltandó számot: '))
 
 # sys: 2, 8, 10, 16
 
+#number to decimal
 def decimal(num, sys):
     out = 0
     if sys == 2:
@@ -41,6 +42,22 @@ def decimal(num, sys):
                 elif num [i].lower() == 'f':
                     hex = 15
                 out +=  hex * (16 ** i)
+    else:
+        return
+    return out
+
+
+#number to binary
+def binary(num, sys):
+    out = 0
+    if sys == 2:
+        out = num
+    elif sys == 8:
+        print('')
+    elif sys == 10:
+        print('')
+    elif sys == 16:
+        print('')
     else:
         return
     return out
