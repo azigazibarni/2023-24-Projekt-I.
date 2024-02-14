@@ -1,5 +1,5 @@
-sysInput = int(input('Add meg az átváltandó szám számrendszerét (2, 8, 10, 16): '))
-numInput = str(input('Add meg az átváltandó számot: '))
+#sysInput = int(input('Add meg az átváltandó szám számrendszerét (2, 8, 10, 16): '))
+#numInput = str(input('Add meg az átváltandó számot: '))
 # destInput = int(input('Add meg a cél számrendszert (2, 8, 10, 16): '))
 
 # sys: 2, 8, 10, 16
@@ -8,6 +8,7 @@ numInput = str(input('Add meg az átváltandó számot: '))
 def decimal(num, sys):
     out = 0
     if sys == 2:
+        num = str(num)
         num = list(num[::-1])
         for i in range(len(num)):
             if int(num[i]) == 1:
@@ -52,14 +53,44 @@ def binary(num, sys):
     out = 0
     if sys == 2:
         out = num
+
     elif sys == 8:
-        print('')
+        out = ''
+        num = str(num)
+        for i in range(len(num)):
+            oct = int(num[i])
+            if oct == 0:
+                out += '000'
+            elif oct == 1:
+                out += '001'
+            elif oct == 2:
+                out += '010'
+            elif oct == 3:
+                out += '011'
+            elif oct == 4:
+                out += '100'
+            elif oct == 5:
+                out += '101'
+            elif oct == 6:
+                out += '110'
+            elif oct == 7:
+                out += '111'
+            else:
+                return
+
     elif sys == 10:
-        print('')
+        out = ''
+        while num > 0:
+            remind = num % 2
+            out = str(remind) + out
+            num = num // 2
+    
     elif sys == 16:
-        print('')
+        print('16 => 2')
+
     else:
         return
-    return out
+    return int(out)
 
-print(decimal(numInput, sysInput))
+
+print(binary(5007, 8))
