@@ -144,6 +144,67 @@ def binary(num, sys):
     return int(out)
 
 
+#convert to octal
+def octal(num, sys):
+    out = 0
+    #from binary
+    if sys == 2:
+
+        #add missing 0s to the front
+        if 3 - (len(str(num)) % 3) != 3:
+            remaind = 3 - (len(str(num)) % 3)
+            #return remaind
+            num = list(num)
+            for i in range(remaind):
+                num.insert(0, '0')
+            num = ''.join(num)
+
+        oct = ''
+        for i in range(0, len(num), 3):
+            current = num[i] + num[i+1] + num[i+2]
+            if current == '000':
+                oct += '0'
+            elif current == '001':
+                oct += '1'
+            elif current == '010':
+                oct += '2'
+            elif current == '011':
+                oct += '3'
+            elif current == '100':
+                oct += '4'
+            elif current == '101':
+                oct += '5'
+            elif current == '110':
+                oct += '6'
+            elif current == '111':
+                oct += '7'
+            else:
+                return
+        out = int(oct)
+
+    #from octal
+    elif sys == 8:
+        out = num
+
+    #from decimal
+    elif sys == 10:
+        out = ''
+        for i in range(len(num) + 1):
+            quot = int(num) // 8
+            remaind = int(num) % 8
+            num = quot
+            out += str(remaind)
+        out = out[::-1]
+        out = int(out)
+
+    #from hexadecimal
+    elif sys == 16:
+        return ':shrug:'
+
+    else:
+        return
+    return out
+
 
 def calculate():
     numInput = inputNum.get()
@@ -172,8 +233,18 @@ def calculate():
         elif sysList.get() == '16':
             out = binary(numInput, 16)
 
-    outNum.config(text = out)
+    #convert to octal
+    elif destSysList.get() == '8':
 
+        if sysList.get() == '2' :
+            out = octal(int(numInput), 2)
+        elif sysList.get() == '8':
+            out == numInput
+        elif sysList.get() == '10':
+            out = octal(numInput, 10)
+        elif sysList.get() == '16':
+            out = octal(numInput, 16)
+    outNum.config(text = out)
 
 
 def clear():
