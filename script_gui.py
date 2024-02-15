@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 
 # sysInput = int(input('Add meg az átváltandó szám számrendszerét (2, 8, 10, 16): '))
 # numInput = str(input('Add meg az átváltandó számot: '))
@@ -178,31 +179,44 @@ def calculate():
 def clear():
     outNum.config(text = '')
 
-    
-from tkinter import ttk
 
 window = Tk()
 window.geometry('')
-
+window.resizable(False, False)
 window.title('Számrendszerek')
 
-title = Label(window, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
+pageMenu = Frame(window, width=300, height=300, bg='black')
+pageConvert = Frame(window)
+pageOperations = Frame(window)
+pageMenu.grid(row=0, column=0)
+pageConvert.grid(row=0, column=0)
+pageOperations.grid(row=0, column=0)
+
+#menu
+menu1 = Button(pageMenu, text='convert',command=lambda: pageConvert.tkraise())
+menu1.grid(row=0,column=0)
+
+#conversion menu
+esc = Button(pageConvert, width=5, text='Vissza', relief='groove', command=lambda: pageMenu.tkraise())
+esc.grid(row=0, column=0, columnspan=5, sticky=W, padx=(15, 0)) 
+
+title = Label(pageConvert, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
 title.grid(row = 0, column = 0, columnspan=5, pady=(0, 30))
 
-inputNum = Entry(window, width=15, borderwidth=1, relief='solid', justify=(CENTER))
-inputNum.grid(row= 1, column = 0, padx=(15, 0), pady = (0, 60))
+inputNum = Entry(pageConvert, width=15, borderwidth=1, relief='solid', justify= 'center')
+inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
-sysList = ttk.Combobox(window, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
-sysList.grid(row = 1, column = 1, padx=(0, 10), pady = (0, 60))
+sysList = ttk.Combobox(pageConvert, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
-calc = Button(window, width = 5, text = '->', relief =GROOVE, command = calculate)
-calc.grid(row = 1, column = 2, pady = (0, 60))
+calc = Button(pageConvert, width = 5, text = '->', relief = 'groove', command = calculate)
+calc.grid(row = 2, column = 2, pady = (0, 60))
 
-outNum = Label(window, width=15, borderwidth=1, relief='solid')
-outNum.grid(row = 1, column = 3, padx=(10, 0), pady = (0, 60))
+outNum = Label(pageConvert, width=15, borderwidth=1, relief='solid')
+outNum.grid(row = 2, column = 3, padx=(10, 0), pady = (0, 60))
 
-destSysList = ttk.Combobox(window, state='readonly', values=['2', '8', '10', '16'], width=5)
-destSysList.grid(row = 1, column = 4, padx=(0, 15), pady = (0, 60))
+destSysList = ttk.Combobox(pageConvert, state='readonly', values=['2', '8', '10', '16'], width=5)
+destSysList.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
 
-
+pageMenu.tkraise()
 window.mainloop()
