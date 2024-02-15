@@ -177,6 +177,8 @@ def calculate():
 
 def clear():
     outNum.config(text = '')
+
+    
 from tkinter import ttk
 
 window = Tk()
@@ -185,12 +187,12 @@ window.geometry('')
 window.title('Számrendszerek')
 
 title = Label(window, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
-title.grid(row = 0, column = 0, columnspan=5, pady=(0,30))
+title.grid(row = 0, column = 0, columnspan=5, pady=(0, 30))
 
 inputNum = Entry(window, width=15, borderwidth=1, relief='solid', justify=(CENTER))
 inputNum.grid(row= 1, column = 0, padx=(15, 0), pady = (0, 60))
 
-sysList = ttk.Combobox(window, values=['2', '8', '10', '16'], width=5, postcommand = clear)
+sysList = ttk.Combobox(window, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
 sysList.grid(row = 1, column = 1, padx=(0, 10), pady = (0, 60))
 
 calc = Button(window, width = 5, text = '->', relief =GROOVE, command = calculate)
@@ -199,7 +201,7 @@ calc.grid(row = 1, column = 2, pady = (0, 60))
 outNum = Label(window, width=15, borderwidth=1, relief='solid')
 outNum.grid(row = 1, column = 3, padx=(10, 0), pady = (0, 60))
 
-destSysList = ttk.Combobox(window, values=['2', '8', '10', '16'], width=5)
+destSysList = ttk.Combobox(window, state='readonly', values=['2', '8', '10', '16'], width=5)
 destSysList.grid(row = 1, column = 4, padx=(0, 15), pady = (0, 60))
 
 
