@@ -195,6 +195,9 @@ pageOperations.grid(row=0, column=0)
 #menu
 menu1 = Button(pageMenu, text='convert',command=lambda: pageConvert.tkraise())
 menu1.grid(row=0,column=0)
+menu2 = Button(pageMenu, text='operations',command=lambda: pageOperations.tkraise())
+menu2.grid(row=1,column=0)
+
 
 #conversion menu
 esc = Button(pageConvert, width=5, text='Vissza', relief='groove', command=lambda: pageMenu.tkraise())
