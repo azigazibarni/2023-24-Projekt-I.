@@ -12,28 +12,44 @@ def homePage():
     global frame
 
     frame = Frame(root)
-    frame.grid(row=0,column=0, sticky=W+E)
+    frame.grid(row=0,column=0, sticky='nsew')
     
-    proceed = ttk.Button(frame, text='converter', command=converting)
-    proceed.grid(row=0, column=0)
+    proceed = ttk.Button(frame, text='converter', command= converting)
+    proceed.grid(row=0, column=0, padx=(15, 5), pady=(10, 0))
 
     proceed2 = ttk.Button(frame, text='operations', command=operations)
-    proceed2.grid(row=0, column=1)
+    proceed2.grid(row=0, column=1, padx=(5,15), pady=(10, 0))
 
-    root.geometry('')
+
+    #resizing window
+    widget_list = [proceed, proceed2]
+
+    for widget in widget_list:
+        widget.update()
+
+    minimum_height = 0
+    for height in widget_list:
+        minimum_height += height.winfo_height()
+
+    minimum_width = 0
+    for width in widget_list:
+        minimum_width += width.winfo_width()
+
+    root.geometry("{}x{}".format(minimum_width+40, minimum_height))
+    root.resizable(False, False)
 
 
 def converting():
     global frame2, inputNum, sysList, calcBtn, outNum, destSysList
-
-    frame2 = Frame(root)
-    frame2.grid(row=0,column=0, sticky=W+E)
     
+    frame2 = Frame(root)
+    frame2.grid(row=0,column=0, sticky=N+W)
+
     backBtn = Button(frame2, width=5, text='Vissza', relief='groove', command=lambda: [homePage(), deleteConvWidgets()])
     backBtn.grid(row=0, column=0, columnspan=5, sticky=W, padx=(15, 0)) 
 
     title = Label(frame2, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
-    title.grid(row = 0, column = 0, columnspan=5, pady=(0, 30))
+    title.grid(row = 1, column = 0, columnspan=10, pady=(0, 15))
 
     inputNum = Entry(frame2, width=15, borderwidth=1, relief='solid', justify= 'center', )
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
@@ -51,11 +67,31 @@ def converting():
     destSysList.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
 
 
+    #resizing window
+    widget_list = [inputNum, sysList, calcBtn, outNum, destSysList]
+
+    for widget in widget_list:
+        widget.update()
+
+    minimum_height = 0
+    for height in widget_list:
+        minimum_height += height.winfo_height()
+
+    minimum_width = 0
+    for width in widget_list:
+        minimum_width += width.winfo_width()
+
+    root.geometry("{}x{}".format(minimum_width+50, minimum_height+40))
+    root.resizable(False, False)
+
+
+
 def operations():
+
     global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList
 
     frame3 = Frame(root)
-    frame3.grid(row=0,column=0, sticky=W+E)
+    frame3.grid(row=0,column=0, sticky=N)
 
     backBtn = Button(frame3, width=5, text='Vissza', relief='groove', command=lambda: [homePage(), deleteOpWidgets()])
     backBtn.grid(row=0, column=0, columnspan=8, sticky=W, padx=(15, 0))
@@ -86,6 +122,24 @@ def operations():
 
     destSysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5)
     destSysList.grid(row = 2, column = 7, padx=(0, 15), pady = (0, 60))
+
+
+    #resizing window
+    widget_list = [inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList]
+
+    for widget in widget_list:
+        widget.update()
+
+    minimum_height = 0
+    for height in widget_list:
+        minimum_height += height.winfo_height()
+
+    minimum_width = 0
+    for width in widget_list:
+        minimum_width += width.winfo_width()
+
+    root.geometry("{}x{}".format(minimum_width+75, minimum_height))
+    root.resizable(False, False)
 
 
 def calculate():
@@ -129,7 +183,7 @@ def calculate():
             out = decimal(numInput, 16)
     
     #convert to hexadecimal
-    
+
     outNum.config(text=out)
 
 
@@ -146,6 +200,7 @@ def deleteConvWidgets():
 def deleteOpWidgets():
     for widgets in frame3.winfo_children():
         widgets.grid_remove()
+
 
 homePage()
 root.mainloop()
