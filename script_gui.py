@@ -69,7 +69,7 @@ def operations():
     sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
-    opList = ttk.Combobox(frame3, width = 5, values=['+', '-', '*', '%'])
+    opList = ttk.Combobox(frame3, state='readonly', width = 5, values=['+', '-', '*', '/'])
     opList.grid(row = 2, column = 2, pady = (0, 60))
 
     inputNum2 = Entry(frame3, width=15, borderwidth=1, relief='solid', justify= 'center')
