@@ -5,7 +5,7 @@ from conversions import *
 root = Tk()
 root.geometry('')
 root.title('Converter')
-
+root.resizable(False, False)
 global inputNum, sysList, calcBtn, outNum, destSysList, opList, inputNum2, sysList2, out
 
 def homePage():
@@ -36,7 +36,7 @@ def homePage():
         minimum_width += width.winfo_width()
 
     root.geometry("{}x{}".format(minimum_width+40, minimum_height))
-    root.resizable(False, False)
+
 
 
 def converting():
@@ -82,7 +82,7 @@ def converting():
         minimum_width += width.winfo_width()
 
     root.geometry("{}x{}".format(minimum_width+50, minimum_height+40))
-    root.resizable(False, False)
+    
 
 
 
@@ -139,7 +139,7 @@ def operations():
         minimum_width += width.winfo_width()
 
     root.geometry("{}x{}".format(minimum_width+75, minimum_height))
-    root.resizable(False, False)
+    
 
 
 def calculate():
