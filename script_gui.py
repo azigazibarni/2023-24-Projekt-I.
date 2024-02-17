@@ -6,7 +6,7 @@ root = Tk()
 root.geometry('')
 root.title('Converter')
 
-global inputNum, sysList, calcBtn, outNum, destSysList, opList, inputNum2, sysList2
+global inputNum, sysList, calcBtn, outNum, destSysList, opList, inputNum2, sysList2, out
 
 def homePage():
     global frame
@@ -92,20 +92,8 @@ def calculate():
     numInput = inputNum.get()
     global out
 
-    # convert to decimal
-    if destSysList.get() == '10':
-
-        if sysList.get() == '2':
-            out = decimal(numInput, 2)
-        elif sysList.get() == '8':
-            out = decimal(numInput, 8)
-        elif sysList.get() == '10':
-            out = numInput
-        elif sysList.get() == '16':
-            out = decimal(numInput, 16)
-
     #convert to binary
-    elif destSysList.get() == '2':
+    if destSysList.get() == '2':
         
         if sysList.get() == '2' :
             out == numInput
@@ -118,18 +106,32 @@ def calculate():
 
     #convert to octal
     elif destSysList.get() == '8':
-        #valamiért a kövi sor kell neki C:
-        out = numInput
 
         if sysList.get() == '2' :
-            out = octal(int(numInput), 2)
+            out = octal(str(numInput), 2)
         elif sysList.get() == '8':
-            out == numInput
+            out = numInput
         elif sysList.get() == '10':
             out = octal(numInput, 10)
         elif sysList.get() == '16':
             out = octal(numInput, 16)
+
+    # convert to decimal
+    elif destSysList.get() == '10':
+
+        if sysList.get() == '2':
+            out = decimal(numInput, 2)
+        elif sysList.get() == '8':
+            out = decimal(numInput, 8)
+        elif sysList.get() == '10':
+            out = numInput
+        elif sysList.get() == '16':
+            out = decimal(numInput, 16)
+    
+    #convert to hexadecimal
+    
     outNum.config(text=out)
+
 
 
 def clear():

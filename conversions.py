@@ -1,5 +1,7 @@
+#convert to decimal
 def decimal(num, sys):
     out = 0
+
     #from binary
     if sys == 2:
         num = str(num)
@@ -42,6 +44,7 @@ def decimal(num, sys):
     else:
         return
     return int(out)
+
 
 
 #convert to binary
@@ -134,9 +137,11 @@ def binary(num, sys):
     return int(out)
 
 
+
 #convert to octal
 def octal(num, sys):
     out = 0
+
     #from binary
     if sys == 2:
 
@@ -189,8 +194,26 @@ def octal(num, sys):
 
     #from hexadecimal
     elif sys == 16:
-        return ':shrug:'
+        num = binary(num, 16)
+        out = octal(str(num), 2)
 
     else:
         return
     return out
+
+#convert to hexadecimal
+def hexadecimal(num, sys):
+    out = 0
+
+    #from binary
+    if sys == 2:
+        print('uww')
+    #from octal
+    elif sys == 8:
+        print('woof')
+    #from decimal
+    elif sys == 10:
+        print('meow')
+    #form hexadecimal
+    elif sys == 16:
+        out = num
