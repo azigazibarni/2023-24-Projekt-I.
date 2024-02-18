@@ -183,7 +183,16 @@ def calculate():
             out = decimal(numInput, 16)
     
     #convert to hexadecimal
-
+    elif destSysList.get() == '16':
+        if sysList.get() == '2':
+            out = hexadecimal(numInput, 2)
+        elif sysList.get() == '8':
+            out = hexadecimal(numInput, 8)
+        elif sysList.get() == '10':
+            out = hexadecimal(numInput, 10)
+        elif sysList.get() == '16':
+            out = numInput
+            
     outNum.config(text=out)
 
 
