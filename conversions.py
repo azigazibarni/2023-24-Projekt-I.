@@ -148,7 +148,6 @@ def octal(num, sys):
         #add missing 0s to the front
         if 3 - (len(str(num)) % 3) != 3:
             remaind = 3 - (len(str(num)) % 3)
-            #return remaind
             num = list(num)
             for i in range(remaind):
                 num.insert(0, '0')
@@ -207,13 +206,97 @@ def hexadecimal(num, sys):
 
     #from binary
     if sys == 2:
-        print('uww')
+        num = str(num)
+        out = ''
+        #add missing 0s to the front
+        if 4 - (len(str(num)) % 4) != 4:
+            remaind = 4 - (len(str(num)) % 4)
+            num = list(num)
+            for i in range(remaind):
+                num.insert(0, '0')
+            num = ''.join(num)
+
+        for i in range(0, len(num), 4):
+            current = num[i] + num[i+1] + num[i+2] + num[i+3]
+            if current == '0000':
+                out += '0'
+            elif current == '0001':
+                out += '1'
+            elif current == '0010':
+                out += '2'
+            elif current == '0011':
+                out += '3'
+            elif current == '0100':
+                out += '4'
+            elif current == '0101':
+                out += '5'
+            elif current == '0110':
+                out += '6'
+            elif current == '0111':
+                out += '7'
+            elif current == '1000':
+                out += '8'
+            elif current == '1001':
+                out += '9'
+            elif current == '1010':
+                out += 'A'
+            elif current == '1011':
+                out += 'B'
+            elif current == '1100':
+                out += 'C'
+            elif current == '1101':
+                out += 'D'
+            elif current == '1110':
+                out += 'E'
+            elif current == '1111':
+                out += 'F'
+            else:
+                return
+
+        #remove 0s from the front of output
+        out = list(out)
+        while out[0] == '0':
+            out.pop(0)
+        out = ''.join(out)
+                
     #from octal
     elif sys == 8:
-        print('woof')
+        out = binary(num, 8)
+        out = hexadecimal(out, 2)
+
     #from decimal
     elif sys == 10:
-        print('meow')
+        out = ''
+        for i in range(len(num) + 1):
+            quot = int(num) // 16
+            remaind = int(num) % 16
+            num = quot
+            if remaind > 9:
+                if remaind == 10:
+                    remaind = 'A'
+                elif remaind == 11:
+                    remaind = 'B'
+                elif remaind == 12:
+                    remaind = 'C'
+                elif remaind == 13:
+                    remaind = 'D'
+                elif remaind == 14:
+                    remaind = 'E'
+                elif remaind == 15:
+                    remaind = 'F'
+            out += str(remaind)
+        out = out[::-1]
+
+        #remove 0s from the front of output
+        out = list(out)
+        while out[0] == '0':
+            out.pop(0)
+        out = ''.join(out)
+
     #form hexadecimal
     elif sys == 16:
         out = num
+
+    else:
+        return
+    return out
