@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter as tk
 from conversions import *
 
 root = Tk()
@@ -51,7 +52,10 @@ def converting():
     title = Label(frame2, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
     title.grid(row = 1, column = 0, columnspan=10, pady=(0, 15))
 
-    inputNum = Entry(frame2, width=15, borderwidth=1, relief='solid', justify= 'center', )
+    sv = StringVar()
+    sv.trace('w', lambda name, index, mode, sv=sv:clear())
+
+    inputNum = Entry(frame2, width=15, borderwidth=1, relief='solid', justify= 'center', textvariable = sv)
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
@@ -63,9 +67,8 @@ def converting():
     outNum = Label(frame2, width=15, borderwidth=1, relief='solid')
     outNum.grid(row = 2, column = 3, padx=(10, 0), pady = (0, 60))
 
-    destSysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5)
+    destSysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     destSysList.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
-
 
     #resizing window
     widget_list = [inputNum, sysList, calcBtn, outNum, destSysList]
