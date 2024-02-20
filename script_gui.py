@@ -15,7 +15,7 @@ def homePage():
     frame = Frame(root)
     frame.grid(row=0,column=0, sticky='nsew')
     
-    convPhotoImg = PhotoImage(file = r'arrows.png').subsample(5, 5)
+    convPhotoImg = PhotoImage(file = r'pictures\arrows.png').subsample(5, 5)
     proceed = ttk.Button(frame, image=convPhotoImg, command= converting)
     proceed.grid(row=0, column=0, padx=(15, 5), pady=(10, 0))
     proceed.image = convPhotoImg
@@ -23,7 +23,7 @@ def homePage():
     convLabel = Label(frame, text='Átváltás', font=("Fira Code Medium", 15))
     convLabel.grid(row = 1, column = 0, pady=(5, 15))
 
-    operPhotoImg = PhotoImage(file = r'operations.png').subsample(5, 5)
+    operPhotoImg = PhotoImage(file = r'pictures\operations.png').subsample(5, 5)
     proceed2 = ttk.Button(frame, image=operPhotoImg, command=operations)
     proceed2.grid(row=0, column=1, padx=(5,15), pady=(10, 0))
     proceed2.image = operPhotoImg
@@ -56,7 +56,7 @@ def converting():
     frame2 = Frame(root)
     frame2.grid(row=0,column=0, sticky=N+W)
 
-    backImg = PhotoImage(file = r'backButton.png').subsample(20, 20)
+    backImg = PhotoImage(file = r'pictures\backButton.png').subsample(20, 20)
     backBtn = Button(frame2, width=20, height=20, relief='flat', image=backImg, command=lambda: [homePage(), deleteConvWidgets()])
     backBtn.grid(row=0, column=0, sticky=W, padx=(15, 0), pady=(5, 0))
     backBtn.image = backImg
@@ -72,7 +72,7 @@ def converting():
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
     error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error.grid(row=2, column = 0, pady = (0, 20), padx = (15, 0))
+    error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
@@ -126,7 +126,7 @@ def operations():
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
     error= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error.grid(row=2, column = 0, pady = (0, 20), padx = (15, 0))
+    error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
     sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
@@ -142,7 +142,7 @@ def operations():
     inputNum2.grid(row= 2, column = 3, padx=(15, 0), pady = (0, 60))
 
     error2= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error2.grid(row=2, column = 3, pady = (0, 20), padx = (15, 0))
+    error2.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
 
     sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList2.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
