@@ -1,6 +1,8 @@
 #convert to decimal
 def decimal(num, sys):
     out = 0
+    if num == 0:
+        return 0
 
     #from binary
     if sys == 2:
@@ -50,7 +52,8 @@ def decimal(num, sys):
 #convert to binary
 def binary(num, sys):
     out = 0
-
+    if num == 0:
+        return 0
     #from binary
     if sys == 2:
         out = num
@@ -141,7 +144,8 @@ def binary(num, sys):
 #convert to octal
 def octal(num, sys):
     out = 0
-
+    if num == 0:
+        return 0
     #from binary
     if sys == 2:
 
@@ -203,7 +207,8 @@ def octal(num, sys):
 #convert to hexadecimal
 def hexadecimal(num, sys):
     out = 0
-
+    if num == 0:
+        return 0
     #from binary
     if sys == 2:
         num = str(num)
@@ -267,7 +272,7 @@ def hexadecimal(num, sys):
     #from decimal
     elif sys == 10:
         out = ''
-        for i in range(len(num) + 1):
+        for i in range(len(str(num)) + 1):
             quot = int(num) // 16
             remaind = int(num) % 16
             num = quot
@@ -285,11 +290,12 @@ def hexadecimal(num, sys):
                 elif remaind == 15:
                     remaind = 'F'
             out += str(remaind)
+
         out = out[::-1]
 
         #remove 0s from the front of output
         out = list(out)
-        while out[0] == '0':
+        while out[0] == '0' and len(out) != 0:
             out.pop(0)
         out = ''.join(out)
 
