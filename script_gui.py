@@ -59,6 +59,9 @@ def converting():
     inputNum = Entry(frame2, width=15, borderwidth=1, relief='solid', justify= 'center', textvariable = sv)
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
+    error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
+    error.grid(row=2, column = 0, pady = (0, 20), padx = (15, 0))
+
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
@@ -109,7 +112,10 @@ def operations():
 
     inputNum = Entry(frame3, width=15, borderwidth=1, relief='solid', justify= 'center', textvariable = sv)
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
-    
+
+    error= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
+    error.grid(row=2, column = 0, pady = (0, 20), padx = (15, 0))
+
     sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
@@ -122,6 +128,9 @@ def operations():
 
     inputNum2 = Entry(frame3, width=15, borderwidth=1, relief='solid', justify= 'center', textvariable = sv2)
     inputNum2.grid(row= 2, column = 3, padx=(15, 0), pady = (0, 60))
+
+    error2= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
+    error2.grid(row=2, column = 3, pady = (0, 20), padx = (15, 0))
 
     sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList2.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
