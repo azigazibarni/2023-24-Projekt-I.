@@ -7,7 +7,7 @@ root = Tk()
 root.geometry('')
 root.title('Converter')
 root.resizable(False, False)
-global inputNum, sysList, calcBtn, outNum, destSysList, opList, inputNum2, sysList2, out
+global inputNum, sysList, calcBtn, outNum, destSysList, opList, inputNum2, sysList2, out, error, error2
 
 def homePage():
     global frame
@@ -41,7 +41,7 @@ def homePage():
 
 
 def converting():
-    global frame2, inputNum, sysList, calcBtn, outNum, destSysList
+    global frame2, inputNum, sysList, calcBtn, outNum, destSysList, error
     
     frame2 = Frame(root)
     frame2.grid(row=0,column=0, sticky=N+W)
@@ -65,7 +65,7 @@ def converting():
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
-    calcBtn = Button(frame2, width = 5, text = '->', relief = 'groove', command = calc)
+    calcBtn = Button(frame2, width = 5, text = '->', relief = 'groove', command = checkInput)
     calcBtn.grid(row = 2, column = 2, pady = (0, 60))
 
     outNum = Label(frame2, width=15, borderwidth=1, relief='solid')
@@ -95,7 +95,7 @@ def converting():
 
 def operations():
 
-    global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList
+    global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList, error, error2
 
     frame3 = Frame(root)
     frame3.grid(row=0,column=0, sticky=N)
@@ -161,6 +161,42 @@ def operations():
 
     root.geometry("{}x{}".format(minimum_width+75, minimum_height))
     
+
+def checkInput():
+    inNum = inputNum.get()
+    inSys = int(sysList.get())
+    hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
+    check = True
+    if inSys == 2:
+        for i in range(len(str(inNum))):
+            if i != 0 or i != 1:
+                check = False
+            
+    elif inSys == 8:
+        for i in range(len(str(inNum))):
+            if i < 0 or i > 7:
+                check = False
+            
+    elif inSys == 10:
+        for i in range(len(str(inNum))):
+            if inNum[i].isdigit() == False:
+                check = False
+
+    elif inSys == 16:
+        for i in range(len(str(inNum))):
+            if inNum[i].isdigit() == True:
+                if inNum[i] < 0 or inNum[i] > 9:
+                    check = False
+                
+            elif inNum[i].isdigit() == False:
+                if i not in(hexalist):
+                    check = False
+                
+    if check:
+        calc()
+    else:
+        error.configure(text='Input error')
+
 
 
 def calc():
