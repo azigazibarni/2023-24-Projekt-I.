@@ -15,11 +15,21 @@ def homePage():
     frame = Frame(root)
     frame.grid(row=0,column=0, sticky='nsew')
     
-    proceed = ttk.Button(frame, text='converter', command= converting)
+    convPhotoImg = PhotoImage(file = r'arrows.png').subsample(5, 5)
+    proceed = ttk.Button(frame, image=convPhotoImg, command= converting)
     proceed.grid(row=0, column=0, padx=(15, 5), pady=(10, 0))
+    proceed.image = convPhotoImg
 
-    proceed2 = ttk.Button(frame, text='operations', command=operations)
+    convLabel = Label(frame, text='Átváltás', font=("Fira Code Medium", 15))
+    convLabel.grid(row = 1, column = 0, pady=(5, 15))
+
+    operPhotoImg = PhotoImage(file = r'operations.png').subsample(5, 5)
+    proceed2 = ttk.Button(frame, image=operPhotoImg, command=operations)
     proceed2.grid(row=0, column=1, padx=(5,15), pady=(10, 0))
+    proceed2.image = operPhotoImg
+
+    operLabel = Label(frame, text='Műveletek', font=("Fira Code Medium", 15))
+    operLabel.grid(row = 1, column = 1, pady=(5, 15))
 
 
     #resizing window
@@ -36,7 +46,7 @@ def homePage():
     for width in widget_list:
         minimum_width += width.winfo_width()
 
-    root.geometry("{}x{}".format(minimum_width+40, minimum_height))
+    root.geometry("{}x{}".format(minimum_width+40, minimum_height-110))
 
 
 
@@ -46,8 +56,10 @@ def converting():
     frame2 = Frame(root)
     frame2.grid(row=0,column=0, sticky=N+W)
 
-    backBtn = Button(frame2, width=5, text='Vissza', relief='groove', command=lambda: [homePage(), deleteConvWidgets()])
-    backBtn.grid(row=0, column=0, columnspan=5, sticky=W, padx=(15, 0), pady=(5, 0)) 
+    backImg = PhotoImage(file = r'backButton.png').subsample(20, 20)
+    backBtn = Button(frame2, width=20, height=20, relief='flat', image=backImg, command=lambda: [homePage(), deleteConvWidgets()])
+    backBtn.grid(row=0, column=0, sticky=W, padx=(15, 0), pady=(5, 0))
+    backBtn.image = backImg
 
     title = Label(frame2, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
     title.grid(row = 1, column = 0, columnspan=10, pady=(0, 15))
