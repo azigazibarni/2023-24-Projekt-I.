@@ -49,7 +49,7 @@ def homePage():
     root.geometry("{}x{}".format(minimum_width+40, minimum_height-110))
 
 
-
+#converting window
 def converting():
     global frame2, inputNum, sysList, calcBtn, outNum, destSysList, error, check
     
@@ -107,7 +107,7 @@ def converting():
     check = True
 
 
-
+#operations window
 def operations():
     global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList, error, error2, check, check2
 
@@ -179,6 +179,131 @@ def operations():
     check, check2 = True, True
     
 
+#function for calculations
+def calc():
+    global out, check
+    
+    checkInput()
+
+    numInput = inputNum.get()
+    
+    if check == True:
+        #convert to binary
+        if destSysList.get() == '2':
+            
+            if sysList.get() == '2' :
+                out = binary(numInput, 2)
+            elif sysList.get() == '8':
+                out = binary(int(numInput), 8)
+            elif sysList.get() == '10':
+                out = binary(numInput, 10)
+            elif sysList.get() == '16':
+                out = binary(numInput, 16)
+
+        #convert to octal
+        elif destSysList.get() == '8':
+
+            if sysList.get() == '2' :
+                out = octal(str(numInput), 2)
+            elif sysList.get() == '8':
+                out = octal(numInput, 8)
+            elif sysList.get() == '10':
+                out = octal(numInput, 10)
+            elif sysList.get() == '16':
+                out = octal(numInput, 16)
+
+        # convert to decimal
+        elif destSysList.get() == '10':
+
+            if sysList.get() == '2':
+                out = decimal(numInput, 2)
+            elif sysList.get() == '8':
+                out = decimal(numInput, 8)
+            elif sysList.get() == '10':
+                out = decimal(numInput, 10)
+            elif sysList.get() == '16':
+                out = decimal(numInput, 16)
+        
+        #convert to hexadecimal
+        elif destSysList.get() == '16':
+            if sysList.get() == '2':
+                out = hexadecimal(numInput, 2)
+            elif sysList.get() == '8':
+                out = hexadecimal(numInput, 8)
+            elif sysList.get() == '10':
+                out = hexadecimal(numInput, 10)
+            elif sysList.get() == '16':
+                out = hexadecimal(numInput, 16)
+    else:
+        return
+
+    outNum.config(text=out)
+
+
+
+#function for operations
+def opCalc():
+    global out, check, check2
+
+    checkInput()
+    checkInput2()
+
+    numInput = inputNum.get()
+    numInput2 = inputNum2.get()
+    sysIn = int(sysList.get())
+    sysIn2 = int(sysList2.get())
+    outList = int(destSysList.get())
+    if check == True and check2 == True: 
+        #addition
+        if opList.get() == '+':
+            if outList == 2:
+                out = binary(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
+            elif outList == 8:
+                out = octal(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
+            elif outList == 10:
+                out = decimal(numInput, sysIn) + decimal(numInput2, sysIn2)
+            elif outList == 16:
+                out = hexadecimal(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
+
+        #subtraction
+        elif opList.get() == '-':
+            if outList == 2:
+                out = binary(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
+            elif outList == 8:
+                out = octal(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
+            elif outList == 10:
+                out = decimal(numInput, sysIn) - decimal(numInput2, sysIn2)
+            elif outList == 16:
+                out = hexadecimal(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
+
+        #multiplication
+        elif opList.get() == '*':
+            if outList == 2:
+                out = binary(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
+            elif outList == 8:
+                out = octal(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
+            elif outList == 10:
+                out = decimal(numInput, sysIn) * decimal(numInput2, sysIn2)
+            elif outList == 16:
+                out = hexadecimal(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
+        
+        #division
+        elif opList.get() == '/':
+            if outList == 2:
+                out = binary(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
+            elif outList == 8:
+                out = octal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
+            elif outList == 10:
+                out = decimal(numInput, sysIn) // decimal(numInput2, sysIn2)
+            elif outList == 16:
+                out = hexadecimal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
+    else:
+        return
+
+    outNum.config(text=out)
+
+
+#input checking
 def checkInput():
     global check
     inNum = inputNum.get()
@@ -277,127 +402,7 @@ def checkInput2():
     return
 
 
-def calc():
-    global out, check
-    
-    checkInput()
-
-    numInput = inputNum.get()
-    
-    if check == True:
-        #convert to binary
-        if destSysList.get() == '2':
-            
-            if sysList.get() == '2' :
-                out = numInput
-            elif sysList.get() == '8':
-                out = binary(int(numInput), 8)
-            elif sysList.get() == '10':
-                out = binary(numInput, 10)
-            elif sysList.get() == '16':
-                out = binary(numInput, 16)
-
-        #convert to octal
-        elif destSysList.get() == '8':
-
-            if sysList.get() == '2' :
-                out = octal(str(numInput), 2)
-            elif sysList.get() == '8':
-                out = numInput
-            elif sysList.get() == '10':
-                out = octal(numInput, 10)
-            elif sysList.get() == '16':
-                out = octal(numInput, 16)
-
-        # convert to decimal
-        elif destSysList.get() == '10':
-
-            if sysList.get() == '2':
-                out = decimal(numInput, 2)
-            elif sysList.get() == '8':
-                out = decimal(numInput, 8)
-            elif sysList.get() == '10':
-                out = numInput
-            elif sysList.get() == '16':
-                out = decimal(numInput, 16)
-        
-        #convert to hexadecimal
-        elif destSysList.get() == '16':
-            if sysList.get() == '2':
-                out = hexadecimal(numInput, 2)
-            elif sysList.get() == '8':
-                out = hexadecimal(numInput, 8)
-            elif sysList.get() == '10':
-                out = hexadecimal(numInput, 10)
-            elif sysList.get() == '16':
-                out = numInput
-    else:
-        return
-
-    outNum.config(text=out)
-
-
-#operations
-def opCalc():
-    global out, check, check2
-
-    checkInput()
-    checkInput2()
-
-    numInput = inputNum.get()
-    numInput2 = inputNum2.get()
-    sysIn = int(sysList.get())
-    sysIn2 = int(sysList2.get())
-    outList = int(destSysList.get())
-    if check == True and check2 == True: 
-        #addition
-        if opList.get() == '+':
-            if outList == 2:
-                out = binary(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
-            elif outList == 8:
-                out = octal(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
-            elif outList == 10:
-                out = decimal(numInput, sysIn) + decimal(numInput2, sysIn2)
-            elif outList == 16:
-                out = hexadecimal(decimal(numInput, sysIn) + decimal(numInput2, sysIn2), 10)
-
-        #minus
-        elif opList.get() == '-':
-            if outList == 2:
-                out = binary(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
-            elif outList == 8:
-                out = octal(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
-            elif outList == 10:
-                out = decimal(numInput, sysIn) - decimal(numInput2, sysIn2)
-            elif outList == 16:
-                out = hexadecimal(decimal(numInput, sysIn) - decimal(numInput2, sysIn2), 10)
-
-        #multiplication
-        elif opList.get() == '*':
-            if outList == 2:
-                out = binary(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
-            elif outList == 8:
-                out = octal(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
-            elif outList == 10:
-                out = decimal(numInput, sysIn) * decimal(numInput2, sysIn2)
-            elif outList == 16:
-                out = hexadecimal(decimal(numInput, sysIn) * decimal(numInput2, sysIn2), 10)
-        
-        #division
-        elif opList.get() == '/':
-            if outList == 2:
-                out = binary(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
-            elif outList == 8:
-                out = octal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
-            elif outList == 10:
-                out = decimal(numInput, sysIn) // decimal(numInput2, sysIn2)
-            elif outList == 16:
-                out = hexadecimal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
-    else:
-        return
-
-    outNum.config(text=out)
-
+#clearing output when input changed
 def clear():
     outNum.config(text = '')
 

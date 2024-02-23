@@ -1,8 +1,6 @@
 #convert to decimal
 def decimal(num, sys):
     out = 0
-    if num == 0:
-        return 0
 
     #from binary
     if sys == 2:
@@ -20,7 +18,10 @@ def decimal(num, sys):
 
     #from decimal
     elif sys == 10:
-        out = num
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = num
 
     #from hexadecimal
     elif sys == 16:
@@ -52,11 +53,13 @@ def decimal(num, sys):
 #convert to binary
 def binary(num, sys):
     out = 0
-    if num == 0:
-        return 0
+
     #from binary
     if sys == 2:
-        out = num
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = num
 
     #from octal
     elif sys == 8:
@@ -85,12 +88,15 @@ def binary(num, sys):
 
     #from decimal
     elif sys == 10:
-        out = ''
-        num = int(num)
-        while num > 0:
-            remind = num % 2
-            out = str(remind) + out
-            num = num // 2
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = ''
+            num = int(num)
+            while num > 0:
+                remind = num % 2
+                out = str(remind) + out
+                num = num // 2
     
     #from hexadecimal
     elif sys == 16:
@@ -134,7 +140,6 @@ def binary(num, sys):
                     out += '1111'
             else:
                 return
-
     else:
         return
     return int(out)
@@ -144,11 +149,9 @@ def binary(num, sys):
 #convert to octal
 def octal(num, sys):
     out = 0
-    if num == 0:
-        return 0
+
     #from binary
     if sys == 2:
-
         #add missing 0s to the front
         if 3 - (len(str(num)) % 3) != 3:
             remaind = 3 - (len(str(num)) % 3)
@@ -182,7 +185,10 @@ def octal(num, sys):
 
     #from octal
     elif sys == 8:
-        out = num
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = num
 
     #from decimal
     elif sys == 10:
@@ -204,11 +210,12 @@ def octal(num, sys):
         return
     return out
 
+
+
 #convert to hexadecimal
 def hexadecimal(num, sys):
     out = 0
-    if num == 0:
-        return 0
+
     #from binary
     if sys == 2:
         num = str(num)
@@ -259,11 +266,14 @@ def hexadecimal(num, sys):
                 return
 
         #remove 0s from the front of output
-        out = list(out)
-        while out[0] == '0':
-            out.pop(0)
-        out = ''.join(out)
-                
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = list(out)
+            while out[0] == '0':
+                out.pop(0)
+            out = ''.join(out)
+      
     #from octal
     elif sys == 8:
         out = binary(num, 8)
@@ -271,38 +281,43 @@ def hexadecimal(num, sys):
 
     #from decimal
     elif sys == 10:
-        out = ''
-        for i in range(len(str(num)) + 1):
-            quot = int(num) // 16
-            remaind = int(num) % 16
-            num = quot
-            if remaind > 9:
-                if remaind == 10:
-                    remaind = 'A'
-                elif remaind == 11:
-                    remaind = 'B'
-                elif remaind == 12:
-                    remaind = 'C'
-                elif remaind == 13:
-                    remaind = 'D'
-                elif remaind == 14:
-                    remaind = 'E'
-                elif remaind == 15:
-                    remaind = 'F'
-            out += str(remaind)
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = ''
+            for i in range(len(str(num)) + 1):
+                quot = int(num) // 16
+                remaind = int(num) % 16
+                num = quot
+                if remaind > 9:
+                    if remaind == 10:
+                        remaind = 'A'
+                    elif remaind == 11:
+                        remaind = 'B'
+                    elif remaind == 12:
+                        remaind = 'C'
+                    elif remaind == 13:
+                        remaind = 'D'
+                    elif remaind == 14:
+                        remaind = 'E'
+                    elif remaind == 15:
+                        remaind = 'F'
+                out += str(remaind)
 
-        out = out[::-1]
+            out = out[::-1]
 
-        #remove 0s from the front of output
-        out = list(out)
-        while out[0] == '0' and len(out) != 0:
-            out.pop(0)
-        out = ''.join(out)
+            #remove 0s from the front of output
+            out = list(out)
+            while out[0] == '0' and len(out) != 0:
+                out.pop(0)
+            out = ''.join(out)
 
     #form hexadecimal
     elif sys == 16:
-        out = num
-
+        if all(digit == '0' for digit in str(num)):
+            out = 0
+        else:
+            out = num
     else:
         return
     return out
