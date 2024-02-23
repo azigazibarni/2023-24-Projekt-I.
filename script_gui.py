@@ -56,9 +56,9 @@ def converting():
     frame2 = Frame(root)
     frame2.grid(row=0,column=0, sticky=N+W)
 
-    backImg = PhotoImage(file = r'pictures\backButton.png').subsample(20, 20)
-    backBtn = Button(frame2, width=20, height=20, relief='flat', image=backImg, command=lambda: [homePage(), deleteConvWidgets()])
-    backBtn.grid(row=0, column=0, sticky=W, padx=(15, 0), pady=(5, 0))
+    backImg = PhotoImage(file = r'pictures\backX.png').subsample(13, 13)
+    backBtn = Button(frame2, width=25, height=25, relief='flat', image=backImg, command=lambda: [homePage(), deleteConvWidgets()])
+    backBtn.grid(row=0, column=0, sticky=W, padx=(5, 0), pady=(5, 0))
     backBtn.image = backImg
 
     title = Label(frame2, text='Átváltás', font=("Fira Code Medium", 15), justify='center')
@@ -77,8 +77,10 @@ def converting():
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
-    calcBtn = Button(frame2, width = 5, text = '->', relief = 'groove', command = calc)
+    calcImg = PhotoImage(file = r'pictures\calcArrow.png').subsample(50, 40)
+    calcBtn = Button(frame2, width=35, height=15, image=calcImg, relief = 'groove', command = calc)
     calcBtn.grid(row = 2, column = 2, pady = (0, 60))
+    calcBtn.image = calcImg
 
     outNum = Label(frame2, width=15, borderwidth=1, relief='solid')
     outNum.grid(row = 2, column = 3, padx=(10, 0), pady = (0, 60))
@@ -112,8 +114,10 @@ def operations():
     frame3 = Frame(root)
     frame3.grid(row=0,column=0, sticky=N)
 
-    backBtn = Button(frame3, width=5, text='Vissza', relief='groove', command=lambda: [homePage(), deleteOpWidgets()])
-    backBtn.grid(row=0, column=0, columnspan=8, sticky=W, padx=(15, 0),  pady=(5, 0))
+    backImg = PhotoImage(file = r'pictures\backX.png').subsample(13, 13)
+    backBtn = Button(frame3, width=25, height=25, relief='flat', image=backImg, command=lambda: [homePage(), deleteOpWidgets()])
+    backBtn.grid(row=0, column=0, sticky=W, padx=(5, 0), pady=(5, 0))
+    backBtn.image = backImg
 
     title = Label(frame3, text='Műveletek', font=("Fira Code Medium", 15), justify='center')
     title.grid(row = 1, column = 0, columnspan=8, pady=(0, 30))
