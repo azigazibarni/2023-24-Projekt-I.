@@ -74,7 +74,7 @@ def converting():
     error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
-    sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+    sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
     calcImg = PhotoImage(file = r'pictures\calcArrow.png').subsample(50, 40)
@@ -132,7 +132,7 @@ def operations():
     error= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
-    sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+    sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
     opList = ttk.Combobox(frame3, state='readonly', width = 5, values=['+', '-', '*', '/'], postcommand = clear)
@@ -148,7 +148,7 @@ def operations():
     error2= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error2.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
 
-    sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+    sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput2(), clear()])
     sysList2.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
 
     calcBtn = Button(frame3, width = 5, text = '=', relief = 'groove', command = opCalc)
@@ -317,9 +317,16 @@ def opCalc():
 def checkInput():
     global check
     inNum = inputNum.get()
-    inSys = int(sysList.get())
+    #inSys = int(sysList.get())
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check = True
+
+    try:
+        inSys = int(sysList.get())
+    except:
+        check = False
+        error.configure(text= 'No input system')
+        return
 
     if inNum == '':
         check = False
@@ -371,9 +378,16 @@ def checkInput():
 def checkInput2():
     global check2
     inNum = inputNum2.get()
-    inSys = int(sysList2.get())
+    #inSys = int(sysList2.get())
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check2 = True
+
+    try:
+        inSys = int(sysList2.get())
+    except:
+        check2 = False
+        error2.configure(text= 'No input system')
+        return
 
     if inNum == '':
         check2 = False
