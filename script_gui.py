@@ -321,6 +321,11 @@ def checkInput():
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check = True
 
+    if inNum == '':
+        check = False
+        error.configure(text= 'No entry')
+        return
+
     if inSys == 2:
         checkNum = 0
         for i in range(len(str(inNum))):
@@ -369,6 +374,11 @@ def checkInput2():
     inSys = int(sysList2.get())
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check2 = True
+
+    if inNum == '':
+        check2 = False
+        error2.configure(text= 'No entry')
+        return
 
     if inSys == 2:
         checkNum = 0
