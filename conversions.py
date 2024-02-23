@@ -193,7 +193,7 @@ def octal(num, sys):
     #from decimal
     elif sys == 10:
         out = ''
-        for i in range(len(num) + 1):
+        for i in range(len(str(num)) + 1):
             quot = int(num) // 8
             remaind = int(num) % 8
             num = quot
