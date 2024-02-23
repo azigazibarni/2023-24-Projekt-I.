@@ -183,6 +183,12 @@ def operations():
 def calc():
     global out, check
     
+    outSys = destSysList.get()
+    if outSys not in ['2', '8', '10', '16']:
+        error.configure(text= 'No output system')
+        check = False
+        return
+
     checkInput()
 
     numInput = inputNum.get()
@@ -289,6 +295,10 @@ def opCalc():
         
         #division
         elif opList.get() == '/':
+            if decimal(numInput2, sysIn2) == 0:
+                check2 = False
+                error2.configure(text= 'Division by zero')
+                return
             if outList == 2:
                 out = binary(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
             elif outList == 8:
