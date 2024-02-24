@@ -51,7 +51,7 @@ def homePage():
 
 #converting window
 def converting():
-    global frame2, inputNum, sysList, calcBtn, outNum, destSysList, error, check
+    global frame2, inputNum, sysList, calcBtn, outNum, destSysList, error, check, sysError
     
     frame2 = Frame(root)
     frame2.grid(row=0,column=0, sticky=N+W)
@@ -74,7 +74,7 @@ def converting():
     error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
-    sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear()])
+    sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearSysError()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
     calcImg = PhotoImage(file = r'pictures\calcArrow.png').subsample(50, 40)
@@ -85,7 +85,10 @@ def converting():
     outNum = Label(frame2, width=15, borderwidth=1, relief='solid')
     outNum.grid(row = 2, column = 3, padx=(10, 0), pady = (0, 60))
 
-    destSysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+    sysError = Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
+    sysError.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
+
+    destSysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearOutSysError()])
     destSysList.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
 
     #resizing window
@@ -109,7 +112,7 @@ def converting():
 
 #operations window
 def operations():
-    global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList, error, error2, check, check2
+    global frame3, inputNum, sysList, opList, inputNum2, sysList2, calcBtn, outNum, destSysList, error, error2, check, check2, sysError
 
     frame3 = Frame(root)
     frame3.grid(row=0,column=0, sticky=N)
@@ -132,7 +135,7 @@ def operations():
     error= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
 
-    sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear()])
+    sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear(), clearSysError()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
 
     opList = ttk.Combobox(frame3, state='readonly', width = 5, values=['+', '-', '*', '/'], postcommand = clear)
@@ -148,7 +151,7 @@ def operations():
     error2= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
     error2.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
 
-    sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput2(), clear()])
+    sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput2(), clear(), clearSysError2()])
     sysList2.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
 
     calcBtn = Button(frame3, width = 5, text = '=', relief = 'groove', command = opCalc)
@@ -157,7 +160,10 @@ def operations():
     outNum = Label(frame3, width=15, borderwidth=1, relief='solid')
     outNum.grid(row = 2, column = 6, padx=(10, 0), pady = (0, 60))
 
-    destSysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = clear)
+    sysError= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
+    sysError.grid(row=2, column = 6, pady = (5, 20), padx = (15, 0))
+
+    destSysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearOutSysError()])
     destSysList.grid(row = 2, column = 7, padx=(0, 15), pady = (0, 60))
 
     #resizing window
@@ -182,14 +188,14 @@ def operations():
 #function for calculations
 def calc():
     global out, check
-    
-    outSys = destSysList.get()
-    if outSys not in ['2', '8', '10', '16']:
-        error.configure(text= 'No output system')
-        check = False
-        return
 
     checkInput()
+
+    outSys = destSysList.get()
+    if outSys not in ['2', '8', '10', '16']:
+        sysError.configure(text= 'No output system')
+        check = False
+        return
 
     numInput = inputNum.get()
     
@@ -254,6 +260,12 @@ def opCalc():
     checkInput()
     checkInput2()
 
+    outSys = destSysList.get()
+    if outSys not in ['2', '8', '10', '16']:
+        sysError.configure(text= 'No output system')
+        check = False
+        return
+
     numInput = inputNum.get()
     numInput2 = inputNum2.get()
     sysIn = int(sysList.get())
@@ -304,7 +316,7 @@ def opCalc():
             elif outList == 8:
                 out = octal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
             elif outList == 10:
-                out = decimal(numInput, sysIn) // decimal(numInput2, sysIn2)
+                out = round(decimal(numInput, sysIn) / decimal(numInput2, sysIn2), 3)
             elif outList == 16:
                 out = hexadecimal(decimal(numInput, sysIn) // decimal(numInput2, sysIn2), 10)
     else:
@@ -439,6 +451,15 @@ def checkInput2():
 #clearing output when input changed
 def clear():
     outNum.config(text = '')
+
+def clearSysError():
+    error.config(text='')
+
+def clearSysError2():
+    error2.config(text='')
+
+def clearOutSysError():
+    sysError.config(text='')
 
 
 def deleteConvWidgets():
