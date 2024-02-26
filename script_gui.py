@@ -256,11 +256,11 @@ def calc():
 #function for operations
 def opCalc():
     global out, check, check2
+    outSys = destSysList.get()
 
     checkInput()
     checkInput2()
 
-    outSys = destSysList.get()
     if outSys not in ['2', '8', '10', '16']:
         sysError.configure(text= 'No output system')
         check = False
@@ -327,11 +327,12 @@ def opCalc():
 
 #input checking
 def checkInput():
-    global check
+    global check, out
     inNum = inputNum.get()
-    #inSys = int(sysList.get())
+    
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check = True
+    out = ''
 
     try:
         inSys = int(sysList.get())
@@ -388,11 +389,11 @@ def checkInput():
 
 
 def checkInput2():
-    global check2
+    global check2, out
     inNum = inputNum2.get()
-    #inSys = int(sysList2.get())
     hexalist = ['a', 'b', 'c', 'd', 'e' ,'f']
     check2 = True
+    out = ''
 
     try:
         inSys = int(sysList2.get())
