@@ -1,5 +1,5 @@
 <h1>Download</h1>
-Download completed program with batch opener for windows: <a href=https://github.com/azigazibarni/2023-24-Projekt-I./releases/download/Complete/program_batch.zip>here</a>
+Download completed program with batch opener for windows: <a href=https://github.com/azigazibarni/2023-24-Projekt-I./releases/download/Complete/program_batch.zip>here</a> <br>
 Download completed program for mac/win: <a href=https://github.com/azigazibarni/2023-24-Projekt-I./releases/download/Complete/program.zip>here</a>
 
 <h1>Run</h1>
