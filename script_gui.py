@@ -71,8 +71,8 @@ def converting():
     inputNum = Entry(frame2, width=15, borderwidth=1, relief='solid', justify= 'center', textvariable = sv)
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
-    error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
+    error= Label(frame2, text='', font=("Fira Code Medium", 10), justify='left', fg = 'red')
+    error.grid(row=2, column = 0, pady = (10, 20),  columnspan=2)
 
     sysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearSysError()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
@@ -86,7 +86,7 @@ def converting():
     outNum.grid(row = 2, column = 3, padx=(10, 0), pady = (0, 60))
 
     sysError = Label(frame2, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    sysError.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
+    sysError.grid(row=2, column = 3, pady = (10, 20), columnspan=2)
 
     destSysList = ttk.Combobox(frame2, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearOutSysError()])
     destSysList.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
@@ -133,7 +133,7 @@ def operations():
     inputNum.grid(row= 2, column = 0, padx=(15, 0), pady = (0, 60))
 
     error= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error.grid(row=2, column = 0, pady = (5, 20), padx = (15, 0))
+    error.grid(row=2, column = 0, pady = (5, 20), columnspan=2)
 
     sysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput(), clear(), clearSysError()])
     sysList.grid(row = 2, column = 1, padx=(0, 10), pady = (0, 60))
@@ -149,7 +149,7 @@ def operations():
     inputNum2.grid(row= 2, column = 3, padx=(15, 0), pady = (0, 60))
 
     error2= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    error2.grid(row=2, column = 3, pady = (5, 20), padx = (15, 0))
+    error2.grid(row=2, column = 3, pady = (5, 20), columnspan=2)
 
     sysList2 = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [checkInput2(), clear(), clearSysError2()])
     sysList2.grid(row = 2, column = 4, padx=(0, 15), pady = (0, 60))
@@ -161,7 +161,7 @@ def operations():
     outNum.grid(row = 2, column = 6, padx=(10, 0), pady = (0, 60))
 
     sysError= Label(frame3, text='', font=("Fira Code Medium", 10), justify='center', fg = 'red')
-    sysError.grid(row=2, column = 6, pady = (5, 20), padx = (15, 0))
+    sysError.grid(row=2, column = 6, pady = (5, 20), columnspan=2)
 
     destSysList = ttk.Combobox(frame3, state='readonly', values=['2', '8', '10', '16'], width=5, postcommand = lambda: [clear(), clearOutSysError()])
     destSysList.grid(row = 2, column = 7, padx=(0, 15), pady = (0, 60))
